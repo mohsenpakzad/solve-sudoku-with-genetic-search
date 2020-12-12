@@ -44,7 +44,7 @@ public class Main {
 
         GeneticSearch<Sudoku> search = new GeneticSearch<>(
                 makeInitialPopulation(sudoku, 100),
-                50,
+                95,
                 10,
                 30 // It's better to purge rate not greater than of double of crossover rate
         );
