@@ -49,7 +49,7 @@ public class Main {
                 30 // It's better to purge rate not greater than of double of crossover rate
         );
         // believe me! if the algorithm can't find the solution under 15'000 generation, it will find it never!
-        System.out.println("returned sudoku:\n" + search.run(0, 15000));
+        System.out.println("returned sudoku:\n" + search.run(0, 10000));
     }
 
     private static List<Sudoku> makeInitialPopulation(Sudoku initialSudoku, int populationNumber) {
