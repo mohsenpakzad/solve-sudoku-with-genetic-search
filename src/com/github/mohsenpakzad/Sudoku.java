@@ -35,12 +35,17 @@ class Sudoku implements Chromosome<Sudoku> {
 
     public void fillUnknownCellsRandomly() {
 
-        for (int i = 0; i < 9; i++) {
-            for (int j = 0; j < 9; j++) {
+        List<Integer> rows = IntStream.range(0,9).boxed().collect(Collectors.toList());
+        Collections.shuffle(rows);
+        for (int i : rows) {
+            List<Integer> columns = IntStream.range(0,9).boxed().collect(Collectors.toList());
+            Collections.shuffle(columns);
+            for (int j : columns) {
 
                 if (isAssumption(i, j)) continue;
 
                 List<Integer> unfilledNumberInRow = findUnfilledNumberInRow(i);
+
                 int matchInt = unfilledNumberInRow.stream()
                         .filter(findUnfilledNumberInColumn(j)::contains)
                         .filter(findUnfilledNumberInCurrentSquare(i, j)::contains)
@@ -49,7 +54,6 @@ class Sudoku implements Chromosome<Sudoku> {
 
                 if (matchInt != 0) unknownTable[i][j] = matchInt;
                 else unknownTable[i][j] = unfilledNumberInRow.get((int) (Math.random() * unfilledNumberInRow.size()));
-
             }
         }
     }
