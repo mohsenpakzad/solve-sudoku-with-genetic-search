@@ -24,7 +24,7 @@ public class Main {
                 new int[]{2, 8, 7, 4, 1, 9, 6, 3, 5},
                 new int[]{3, 4, 5, 2, 8, 6, 1, 7, 9}
         };
-        Sudoku solved = new Sudoku(solvedTable);
+//        Sudoku solved = new Sudoku(solvedTable);
 //        System.out.println(solved.calculateFitness());
 
         int[][] assumptionTable = new int[][]{
@@ -48,7 +48,8 @@ public class Main {
                 10,
                 30 // It's better to purge rate not greater than of double of crossover rate
         );
-        System.out.println("Solved sudoku:\n" + search.run(0));
+        // believe me! if the algorithm can't find the solution under 15'000 generation, it will find it never!
+        System.out.println("returned sudoku:\n" + search.run(0, 15000));
     }
 
     private static List<Sudoku> makeInitialPopulation(Sudoku initialSudoku, int populationNumber) {

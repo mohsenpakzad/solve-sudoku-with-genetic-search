@@ -17,7 +17,7 @@ class GeneticSearch<T extends Chromosome<T>> {
         this.purgeRate = purgeRate;
     }
 
-    public T run(int goalScore) {
+    public T run(int goalScore, int maxGenerationNumber) {
 
         T bestScoreElement = findBestScoreElement();
         int globalMaxScore = bestScoreElement.getFitnessScore();
@@ -25,6 +25,11 @@ class GeneticSearch<T extends Chromosome<T>> {
 
         int generationNumber;
         for (generationNumber = 1; bestScoreElement.getFitnessScore() != goalScore; generationNumber++) {
+
+            if (generationNumber > maxGenerationNumber) {
+                System.out.println("Maximum generation number exceeded");
+                return bestScoreElement;
+            }
 
             if (bestScoreElement.getFitnessScore() > globalMaxScore) {
                 globalMaxScore = bestScoreElement.getFitnessScore();
